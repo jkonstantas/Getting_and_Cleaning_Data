@@ -1,1 +1,50 @@
+Data Used
+
+For this script i used the following data sets:
+- activity_labels.txt
+- features.txt
+- subject_test.txt
+- X_test.txt
+- y_test.txt
+- subject_train.txt
+- X_train.txt
+- y_train.txt
+
+Packages needed:
+
+data.table and reshape2
+
+Steps performed
+
+The assignment calls for the steps to be performed in this order:
+
+## Merges the training and the test sets to create one data set.
+## Extracts only the measurements on the mean and standard deviation for each measurement. 
+## Uses descriptive activity names to name the activities in the data set
+## Appropriately labels the data set with descriptive variable names. 
+## From the data set in step 4, creates a second, independent tidy data set with the average of
+each variable for each activity and each subject
+
+However i conducted the steps slightly out of order choosing instead to deal with the train and test data sets separately and then 
+merge them as a last step.
+
+The first 11 lines of code actually load the files via the read.table function
+
+I then read in the second column of the "features" using grepl to only focus on "mean" and "std".
+I then save new version of the X_train and X_test data adding a column for the extracted features.
+I then label the subject and "y" train test data with the appropriate labels and repeat the same for the "test" versions of the same 
+data.
+
+Now it's time to merge all of the data and i do this twice using the cbind function, although this can potentially be done in a single s
+step.
+
+With setdiff i identify the columns in data that are not my assigned labels. This allows me to name all of those using the melt
+function for merging all of the columns and their labels together.
+
+The final steps are to fulfill the requirement for #4 of the project. Dcast lets me widen the data frame with the desired labels 
+over the previously melted data.
+
+
+
+
 
